@@ -87,6 +87,7 @@ function getCorrespondingLetter(grade) {
       console.log("G");
       break;
     default:
+      console.log("Nota nu exista");
       break;
   }
 }
@@ -115,6 +116,9 @@ function getCorrespondentLetter2(grade2) {
       break;
     case 4:
       return "G";
+      break;
+    default:
+      return "Nota nu exista";
       break;
   }
 }
@@ -285,10 +289,26 @@ simulateGuessingGame(3, 6);
 
 // t.Scrie o functie care primeste 3 parametri: 2 numere intregi si un string care semnifica numele operatiei (operation: add/substract/divide/multiply). In functie de operatia specificata in string, efectueaza operatia pe cele 2 numere si returneaza rezultatul.
 // Exemplu: input: (2,5, “add”) => output: 7
-function divideOperation(a, b, divide) {
-  return a / b;
+function calculateOperation(a, b, operation) {
+  let result;
+  switch (operation) {
+    case "add":
+      result = a + b;
+      break;
+    case "substract":
+      result = a - b;
+      break;
+    case "divide":
+      result = a / b;
+      break;
+    case "multiply":
+      result = a * b;
+      break;
+    default:
+      return result;
+  }
 }
-console.log(divideOperation(9, 3, "divide"));
+console.log(calculateOperation(9, 3, "multiply"));
 
 // u.Scrie o functie care returneaza numarul de zile dintr-o anumita luna. (Scrie functie folosind toate abordarile care iti vin in minte) Atentie: nu duplica numele functiei
 function daysInMonth(month, year) {
@@ -307,7 +327,8 @@ function calculateDogAge(years) {
   years = years * 7;
   return years;
 }
-console.log(calculateDogAge(6));
+let dogAge = calculateDogAge(6)
+console.log(dogAge);
 
 // w.Scrie o functie care afiseaza numele si varsta unui catel (numele si varsta catelului sunt variabile gloable). In interiorul functiei se apeleaza functia de mai sus pentru a calcula si afisa varsta cateluilui si in anii umani.
 let name = "Rex";
