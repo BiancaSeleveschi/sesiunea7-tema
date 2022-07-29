@@ -8,14 +8,31 @@ function isValidEmail(email) {
   if (email.length > 6 && email.match(validRegex) && email.match(validRegex1)) {
     return true;
   }
-  else {
-    return false;
-  }
+  return false;
 }
-console.log(isValidEmail('biasele@yahoo.com'));
-console.log(isValidEmail('biasele@yahoocom'));
+let validEmail = (isValidEmail('bia.sele@yahoo.com'))
+if (validEmail === true) {
+  console.log("Adresa de email este valida")
+}
+else {
+  console.log("Adresa de email este invalida")
+}
+
 console.log(isValidEmail('biaseleyahoo.com'));
 console.log(isValidEmail('biaseleyahoocom'));
+
+//refacuta fara return
+function isValidEmailAdress(email) {
+  let validRegex = /[@]/;
+  let validRegex1 = /[.]/;
+  if (email.length > 6 && email.match(validRegex) && email.match(validRegex1)) {
+    console.log("Adresa de email este valida!");
+  }
+  else {
+    console.log("Adresa de email nu este valida!");
+  }
+}
+isValidEmailAdress('biasele@yahoocom');
 
 // d.Scrie o functie care interschimba 2 variabile si afiseaza valorile lor la consola inainte si dupa interschimbare.
 let a = 3;
@@ -40,6 +57,16 @@ function calculateSumOfNumbers(x, y) {
 }
 console.log(calculateSumOfNumbers(2, 5));
 
+//Exercitiul "e" refacut fara return
+let sum1 = 0
+function calculateSum(x, y) {
+  for (let i = x; i <= y; i++) {
+    sum1 = sum1 + i;
+  }
+  console.log("Suma numerelor consecutive este " + sum1);
+}
+calculateSum(2, 6);
+
 // f.Scrie o functie care primeste ca parametru un numar si afiseaza la consola daca numarul este par sau impar.
 function getImparity(num) {
   if (num % 2 == 0) {
@@ -54,13 +81,26 @@ getImparity(19);
 // g.Scrie o functie care primeste ca parametru un numar si returneaza o variabila booleana care indica daca numarul este par sau nu. In afara functiei verifica valoarea returnata de functie si afiseaza un mesaj corespunzator in fuctie de valoarea returnata.
 function getParity(a) {
   if (a % 2 == 0) {
-    return true;
+    return true; //return - termina executia functiei = iese din functie
   }
-  else {
-    return false;
-  }
+  return false;
+  // console.log("sfarsitul functiei")
+}
+let parity = getParity(15)
+if (parity == true) {
+  console.log("numarul e par")
+}
+else {
+  console.log("numarul este impar")
 }
 console.log(getParity(15))
+//refactorizare la implementarea de mai sus in care verificam rezultatul intors de functie fara a-l retine intr-o variabila
+if (getParity(16) == true) {
+  console.log("numarul e par")
+}
+else {
+  console.log("numarul este impar")
+}
 
 // h.Scrie o functie care primeste ca parametru o nota de la 10 la 4 si afiseaza echivalentul notei in litera corespunzatoare. Pentru nota 10 se afiseaza “A” etc
 function getCorrespondingLetter(grade) {
@@ -98,28 +138,20 @@ function getCorrespondentLetter2(grade2) {
   switch (grade2) {
     case 10:
       return "A";
-      break;
     case 9:
       return "B";
-      break;
     case 8:
       return "C";
-      break;
     case 7:
       return "D";
-      break;
     case 6:
       return "E";
-      break;
     case 5:
       return "F";
-      break;
     case 4:
       return "G";
-      break;
     default:
       return "Nota nu exista";
-      break;
   }
 }
 console.log(getCorrespondentLetter2(7));
@@ -147,8 +179,15 @@ function isPrime(num) {
   }
   return true;
 }
-console.log(isPrime(71));
-console.log(isPrime(25));
+let prime = isPrime();
+
+if (isPrime(22) === false) {
+  console.log("Numarul nu este numar prim");
+}
+else {
+  console.log("Numarul est prim");
+}
+console.log(prime);
 
 // m.Scrie o functie care simuleaza serviuciul RO-ALERT care primeste 3 parametrii: un param boolean isRaining, un parametru boolean isSnowing si un parametru numeric windSpeed. Daca previziunea pentru vreme este “rainy” sau previziunea este “snowing” si viteaza vantului este mai mare decat 30, afiseaza in consola mesajul “Ramai in casa, este periculos afara”. Altfel, afiseaza mesajul: “S-ar putea sa fie frumos afara”
 function simulateRoAlert(isRaining, isSnowing, windSpeed) {
@@ -212,6 +251,7 @@ function displayCorrespondingDay(day) {
       break;
   }
 }
+//sterge brake-urile de la case-uiri si vezi ce se intampla
 displayCorrespondingDay(2)
 
 //q.  Scrie o functie care sa primeasca de la tastatura un numar (intre 1 si 5) si sa returneze ziua corespunzatoare din saptamana. Pentru valoarea 2 se afiseaza “Tuesday” sau “Marti”.
@@ -219,22 +259,16 @@ function displayCorrespondingDay2(day) {
   switch (day) {
     case 1:
       return "Luni";
-      break;
     case 2:
       return "Marti";
-      break;
     case 3:
       return "Miercuri";
-      break;
     case 4:
       return "Joi";
-      break;
     case 5:
       return "Vineri";
-      break;
     default:
       return "E weekend";
-      break;
   }
 }
 console.log(displayCorrespondingDay2(3))
@@ -243,7 +277,7 @@ console.log(displayCorrespondingDay2(3))
 //r.  Scrie o functie care verifica daca un an este bisect. Un an este bisect daca este divizibil cu 400 sau cu 4 si in acelasi timp nu este divizibil cu 100. (Implementeaza functia folosind prima abordare care iti vine in minte si apoi implementeaz-o folosind restul abordarilor: return, fara return, params, fara params, etc)
 //1.
 function isleapYear(x) {
-  if (x % 400 === 0 || (x % 4 === 0 && x % 100 !== 0)) {
+  if (x % 400 === 0 || x % 4 === 0 && x % 100 !== 0) {
     console.log("Anul este bisect")
   }
   else {
@@ -254,21 +288,23 @@ isleapYear(2022);
 
 //2.
 function isleapYear2(x) {
-  if (x % 400 === 0 || (x % 4 === 0 && x % 100 !== 0)) {
+  if (x % 400 === 0 || x % 4 === 0 && x % 100 !== 0) {
     return "Anul este bisect";
   }
-  else {
-    return "Anul nu este an bisect";
-  }
+  return "Anul nu este an bisect";
 }
 console.log(isleapYear2(2020));
 
-
 function isleapYear3(x) {
-  return (x % 400 === 0 || (x % 4 === 0 && x % 100 !== 0));
+  return (x % 400 === 0 || x % 4 === 0 && x % 100 !== 0);
 }
-console.log(isleapYear3(2001));
-console.log(isleapYear3(2016));
+console.log(isleapYear3(1955));
+if (isleapYear3(2022) === true) {
+  console.log("Anul este bisect!")
+}
+else {
+  console.log("Anul nu este bisect!")
+}
 
 // s.Scrie o functie care simuleaza un joc de ghicit pe baza a 2 variabile primite ca parametru: guess si answer
 // daca raspunsul este mai mic decat solutia (adica valoarea variabilei guess, afiseaza “nu ai ghicit, numarul este prea mic”
@@ -304,17 +340,35 @@ function calculateOperation(a, b, operation) {
     case "multiply":
       result = a * b;
       break;
+    //ramura la care se ajunge daca nu se respecta cazurile de sus => operatie invalida
     default:
-      return result;
+      return "operatie invalida";
+  }
+  return result;
+}
+console.log(calculateOperation(2, 3, "add"));
+//mai fa odata functia calculateOperation folosind return in case-uri
+function calculateOperation1(a, b, operation) {
+  switch (operation) {
+    case "add":
+      return a + b;
+    case "substract":
+      return a - b;
+    case "divide":
+      return a / b;
+    case "multiply":
+      return a * b;
+    default:
+      return "Operatie invalida";
   }
 }
-console.log(calculateOperation(9, 3, "multiply"));
+console.log(calculateOperation1(3, 14, "multiply"));
 
 // u.Scrie o functie care returneaza numarul de zile dintr-o anumita luna. (Scrie functie folosind toate abordarile care iti vin in minte) Atentie: nu duplica numele functiei
 function daysInMonth(month, year) {
   return new Date(year, month, 0).getDate();
 }
-console.log(daysInMonth(3, 2020))
+console.log(daysInMonth(3, 2020));
 
 function displayDaysInMonth(month, year) {
   console.log(new Date(year, month, 0).getDate())
@@ -332,8 +386,8 @@ console.log(dogAge);
 
 // w.Scrie o functie care afiseaza numele si varsta unui catel (numele si varsta catelului sunt variabile gloable). In interiorul functiei se apeleaza functia de mai sus pentru a calcula si afisa varsta cateluilui si in anii umani.
 let name = "Rex";
+let age = 7;
 function displayDogName() {
-  console.log(name + " is " + calculateDogAge(4) + " years old")
+  console.log(name + " is " + calculateDogAge(age) + " years old")
 }
 displayDogName();
-
